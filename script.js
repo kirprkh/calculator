@@ -16,3 +16,7 @@ function divide(a, b) {
 function multiply(a, b) {
     return a * b;
 }
+
+let first = null;
+let second = null;
+let operator = null;
