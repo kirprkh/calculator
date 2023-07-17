@@ -41,6 +41,13 @@ function populateDisplay() {
     display.textContent = displayValue;
 }
 
+function isOperator(value) {
+    return value === '+'
+    || value === '-'
+    || value === '/'
+    || value === '*';
+}
+
 let displayValue = '';
 const display = document.querySelector('#display');
 
@@ -65,13 +72,10 @@ buttons.forEach(button => button.addEventListener('click', () => {
         return;
     }
 
-    if (button.value === '+'
-        || button.value === '-'
-        || button.value === '/'
-        || button.value === '*') {
-            operator = button.value;
-            return;
-        }
+    if (isOperator(button.value)) {
+        operator = button.value;
+        return;
+    }
 
     if (!operator) {
         first += button.value;
