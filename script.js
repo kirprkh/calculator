@@ -24,13 +24,13 @@ let operator = '';
 function operate(first, second, operator) {
     switch (operator) {
         case '+':
-            return add(+first, +second);
+            return add(first, second);
         case '-':
-            return substract(+first, +second);
+            return substract(first, second);
         case '/':
-            return divide(+first, +second);
+            return divide(first, second);
         case '*':
-            return multiply(+first, +second);
+            return multiply(first, second);
     }
 }
 
@@ -47,7 +47,7 @@ const display = document.querySelector('#display');
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => button.addEventListener('click', () => {
     if (button.value === '=') {
-        const result = operate(first, second, operator);
+        const result = operate(+first, +second, operator);
         displayValue = result;
         first = result;
         populateDisplay();
