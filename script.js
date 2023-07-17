@@ -43,3 +43,43 @@ function populateDisplay() {
 
 let displayValue = '';
 const display = document.querySelector('#display');
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => button.addEventListener('click', () => {
+    if (button.value === '=') {
+        const result = operate(first, second, operator);
+        displayValue = result;
+        first = result;
+        populateDisplay();
+        second = '';
+        operator = null;
+        return;
+    }
+
+    if (button.value === 'clear') {
+        first = '';
+        second = '';
+        operator = '';
+        displayValue = '';
+        populateDisplay();
+        return;
+    }
+
+    if (button.value === '+'
+        || button.value === '-'
+        || button.value === '/'
+        || button.value === '*') {
+            operator = button.value;
+            return;
+        }
+
+    if (!operator) {
+        first += button.value;
+        displayValue = first;
+    } else {
+        second += button.value;
+        displayValue = second;
+    }
+
+    populateDisplay();
+}));
