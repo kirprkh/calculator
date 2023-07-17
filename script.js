@@ -34,3 +34,4 @@ function operate(first, second, operator) {
     }
 }
 
+let displayValue = '';
