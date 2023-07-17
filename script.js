@@ -34,4 +34,12 @@ function operate(first, second, operator) {
     }
 }
 
+function populateDisplay() {
+    if ((displayValue + '').length > 6) {
+        displayValue = (+displayValue).toFixed(6);
+    }
+    display.textContent = displayValue;
+}
+
 let displayValue = '';
+const display = document.querySelector('#display');
