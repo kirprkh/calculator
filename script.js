@@ -41,13 +41,6 @@ function populateDisplay() {
     display.textContent = displayValue;
 }
 
-function isOperator(value) {
-    return value === '+'
-    || value === '-'
-    || value === '/'
-    || value === '*';
-}
-
 let displayValue = '';
 const display = document.querySelector('#display');
 
