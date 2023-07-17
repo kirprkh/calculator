@@ -46,8 +46,7 @@ function countDigits(number) {
 }
 
 function isLongNumber(number) {
-    const digits = countDigits(number);
-    return digits > DIGITS_LIMIT;
+    return number.toString().length > DIGITS_LIMIT;
 }
 
 function shortenNumber(number) {
