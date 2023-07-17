@@ -1,3 +1,5 @@
+const DIGITS_LIMIT = 6;
+
 function add(a, b) {
     return a + b;
 }
@@ -34,9 +36,27 @@ function operate(first, second, operator) {
     }
 }
 
+function countDigits(number) {
+    let digits = 0;
+    while (number !== 0) {
+        number = Math.round(number / 10);
+        digits++;
+    }
+    return digits;
+}
+
+function isLongNumber(number) {
+    const digits = countDigits(number);
+    return digits > DIGITS_LIMIT;
+}
+
+function shortenNumber(number) {
+    return number.toFixed(DIGITS_LIMIT);
+}
+
 function populateDisplay() {
-    if ((displayValue + '').length > 6) {
-        displayValue = (+displayValue).toFixed(6);
+    if (isLongNumber(+displayValue)) {
+        displayValue = shortenNumber(+displayValue);
     }
     display.textContent = displayValue;
 }
