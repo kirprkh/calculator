@@ -51,20 +51,23 @@ function isOperator(value) {
 let displayValue = '';
 const display = document.querySelector('#display');
 
+function resetOperation() {
+    first = '';
+    second = '';
+    operator = '';
+}
+
 function manageButton(value) {
     switch (value) {
         case '=':
             const result = operate(+first, +second, operator);
             displayValue = result;
-            first = result;
             populateDisplay();
-            second = '';
-            operator = null;
+            resetOperation();
+            first = result;
             break;
         case 'clear':
-            first = '';
-            second = '';
-            operator = '';
+            resetOperation();
             displayValue = '';
             populateDisplay();
             break;
