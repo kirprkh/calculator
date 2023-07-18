@@ -78,19 +78,23 @@ function manageButton(value) {
             resetOperation();
             first = result;
             break;
+
         case 'clear':
             resetOperation();
             displayValue = '';
             populateDisplay();
             break;
+
         case 'delete':
             break;
+
         case '+':
         case '-':
         case '/':
         case '*':
             operator = value;
             break;
+            
         default:
             if (!operator) {
                 first += value;
