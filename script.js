@@ -36,8 +36,8 @@ function operate(first, second, operator) {
     }
 }
 
-function isLongNumber(number) {
-    return number.toString().length > DIGITS_LIMIT;
+function isLongNumber(value) {
+    return value.length > DIGITS_LIMIT;
 }
 
 function shortenNumber(number) {
@@ -45,7 +45,7 @@ function shortenNumber(number) {
 }
 
 function populateDisplay() {
-    if (isLongNumber(+displayValue)) {
+    if (isLongNumber(displayValue)) {
         displayValue = shortenNumber(+displayValue);
     }
     display.textContent = displayValue;
@@ -60,45 +60,84 @@ function resetOperation() {
     operator = '';
 }
 
-function manageButton(value) {
+function isFullOperation() {
+    return first !== ''
+        && second !== ''
+        && operator !== '';
+}
+
+function handleEquals() {
+    if (!isFullOperation()) {
+        displayValue = 'ERR0R!';
+        populateDisplay();
+        return;
+    }
+
+    const operationResult = operate(+first, +second, operator);
+
+    if (!Number.isInteger(operationResult)) {
+        displayValue = 'ERR0R!';
+        populateDisplay();
+        return;
+    }
+
+    displayValue = operationResult;
+    resetOperation();
+    first = operationResult;
+}
+
+function handleClear() {
+    resetOperation();
+    displayValue = '';
+}
+
+function handleDelete() {
+    // ...
+}
+
+function handleOperator(value) {
+    operator = value;
+}
+
+function handleDigit(value) {
+    if (!operator) {
+        first += value;
+        displayValue = first;
+    } else {
+        second += value;
+        displayValue = second;
+    }
+}
+
+function handleButtons(value) {
     switch (value) {
         case '=':
-            const result = operate(+first, +second, operator);
-            displayValue = result;
-            populateDisplay();
-            resetOperation();
-            first = result;
+            handleEquals();
             break;
 
         case 'clear':
-            resetOperation();
-            displayValue = '';
-            populateDisplay();
+            handleClear();
             break;
 
         case 'delete':
+            handleDelete();
             break;
 
         case '+':
         case '-':
         case '/':
         case '*':
-            operator = value;
+            handleOperator(value);
             break;
             
         default:
-            if (!operator) {
-                first += value;
-                displayValue = first;
-            } else {
-                second += value;
-                displayValue = second;
-            }
-            populateDisplay();
+            handleDigit(value);
     }
+
+    populateDisplay();
 }
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => button.addEventListener('click', () => {
-    manageButton(button.value);
+    handleButtons(button.value);
 }));
