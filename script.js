@@ -93,7 +93,12 @@ function handleClear() {
 }
 
 function handleDelete() {
-    // ...
+    displayValue = displayValue.slice(0, displayValue.length - 1);
+    if (!operator) {
+        first = +displayValue;
+    } else {
+        second = +displayValue;
+    }
 }
 
 function handleOperator(value) {
