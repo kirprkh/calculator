@@ -36,15 +36,6 @@ function operate(first, second, operator) {
     }
 }
 
-function countDigits(number) {
-    let digits = 0;
-    while (number !== 0) {
-        number = Math.round(number / 10);
-        digits++;
-    }
-    return digits;
-}
-
 function isLongNumber(number) {
     return number.toString().length > DIGITS_LIMIT;
 }
