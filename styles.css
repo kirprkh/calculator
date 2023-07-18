@@ -59,6 +59,10 @@
     gap: 16px;
 }
 
+.function-button {
+    background-color: rgb(230, 230, 230);
+}
+
 button {
     margin: 0;
     padding: 0;
