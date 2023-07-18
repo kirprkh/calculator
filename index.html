@@ -9,13 +9,13 @@
     <body>
         <div id="container">
             <div id="calculator-container">
-                <div id="display">Type any number..</div>
+                <div id="display"></div>
                 <div id="buttons">
-                    <div id="top-buttons">
-                        <button id="clear-button" value="clear">Clear</button>
-                        <button id="delete-button" value="delete">Delete</button>
-                    </div>
-                    <div id="down-buttons">
+                    <div id="left-buttons">
+                        <div id="service-buttons">
+                            <button id="clear-button" value="clear">Clear</button>
+                            <button id="delete-button" value="delete">Delete</button>
+                        </div>
                         <div id="digits-buttons">
                             <div class="digits-buttons-row">
                                 <button class="digit-button" value="1">1</button>
@@ -37,6 +37,8 @@
                                 <button class="digit-button" value=".">.</button>
                             </div>
                         </div>
+                    </div>
+                    <div id="right-buttons">
                         <div id="function-buttons">
                             <button class="function-button" value="+">+</button>
                             <button class="function-button" value="-">-</button>
