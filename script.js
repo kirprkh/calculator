@@ -1,4 +1,4 @@
-const DIGITS_LIMIT = 6;
+const DIGITS_LIMIT = 10;
 
 function add(a, b) {
     return a + b;
@@ -40,13 +40,14 @@ function isLongNumber(value) {
     return value.length > DIGITS_LIMIT;
 }
 
-function shortenNumber(number) {
-    return number.toFixed(DIGITS_LIMIT);
+function shortenNumber(value) {
+    return value.slice(0, DIGITS_LIMIT + 1);
 }
 
 function populateDisplay() {
+    displayValue = displayValue.toString();
     if (isLongNumber(displayValue)) {
-        displayValue = shortenNumber(+displayValue);
+        displayValue = shortenNumber(displayValue);
     }
     display.textContent = displayValue;
 }
@@ -75,7 +76,7 @@ function handleEquals() {
 
     const operationResult = operate(+first, +second, operator);
 
-    if (!Number.isInteger(operationResult)) {
+    if (typeof operationResult !== 'number') {
         displayValue = 'ERR0R!';
         populateDisplay();
         return;
@@ -109,6 +110,19 @@ function handleDigit(value) {
     }
 }
 
+function handleDot() {
+    if (displayValue.includes('.')) {
+        return;
+    }
+    if (!operator) {
+        first += '.';
+        displayValue = first;
+    } else {
+        second += '.';
+        displayValue = second;
+    }
+}
+
 function handleButtons(value) {
     switch (value) {
         case '=':
@@ -128,6 +142,10 @@ function handleButtons(value) {
         case '/':
         case '*':
             handleOperator(value);
+            break;
+
+        case '.':
+            handleDot();
             break;
             
         default:
