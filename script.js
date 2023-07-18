@@ -10,7 +10,7 @@ function substract(a, b) {
 
 function divide(a, b) {
     if (b === 0) {
-        return 'ERR0R: Division by zero';
+        return 'Division by zero';
     }
     return a / b;
 }
